@@ -46,7 +46,7 @@ void fillArc(TFT_eSPI &tft, int x, int y, int start_angle, int seg_count, int rx
 }
 
 // Return the 16 bit colour with brightness 0-100%
-unsigned int brightness(unsigned int colour, int brightness) {
+uint16_t brightness(unsigned int colour, int brightness) {
   uint8_t red = colour >> 11;
   uint8_t green = (colour & 0x7E0) >> 5;
   uint8_t blue = colour & 0x1F;
@@ -59,7 +59,7 @@ unsigned int brightness(unsigned int colour, int brightness) {
 }
 
 // Return a 16 bit rainbow colour
-unsigned int rainbow(byte value) {
+uint16_t rainbow(byte value) {
   // Value is expected to be in range 0-127
   // The value is converted to a spectrum colour from 0 = blue through to 127 = red
 
