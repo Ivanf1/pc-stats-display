@@ -30,10 +30,10 @@ void displayStats(JsonDocument &doc, TFT_eSPI &tft) {
     y_start = y_max;
     const char* hw_name = doc[i]["n"].as<const char*>();
     int type = doc[i]["t"].as<int>();
-    if (type == 0) {
+    if (type == DrawingType::ARC) {
       y_max += ARC_STATS_HEIGHT;
       drawArcStats(tft, 0, 240, y_start, y_max, hw_name, doc[i]["s"]);
-    } else if (type == 1) {
+    } else if (type == DrawingType::LINE) {
       y_max += LINE_STATS_HEIGHT;
       drawLineStats(tft, 0, 240, y_start, y_max, hw_name, doc[i]["s"]);
     }

@@ -16,6 +16,8 @@
 
 #define ARC_COMPONENT_START_ANGLE 270
 
+uint16_t rainbow(byte value);
+
 // Draw a circular or elliptical arc with a defined thickness
 // x,y == coords of centre of arc
 // start_angle = 0 - 359
