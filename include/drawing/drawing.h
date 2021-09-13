@@ -3,12 +3,9 @@
 
 #include <Arduino.h>
 #include <TFT_eSPI.h>
+#include <ArduinoJson.h>
 
-// Segments are 3 degrees wide = 120 segments for 360 degrees
-#define FILL_ARC_SEG 3
-
-void fillArc(TFT_eSPI &tft, int x, int y, int start_angle, int seg_count, int rx, int ry, int w, uint32_t color);
-uint16_t brightness(unsigned int color, int brightness);
-uint16_t rainbow(byte value);
+void drawArcStats(TFT_eSPI &tft, uint16_t min_x, uint16_t max_x, uint16_t min_y, uint16_t max_y, const char* hw_name, const JsonArray &sensors);
+void drawLineStats(TFT_eSPI &tft, uint16_t min_x, uint16_t max_x, uint16_t min_y, uint16_t max_y, const char* hw_name, const JsonArray &sensors);
 
 #endif
