@@ -1,3 +1,5 @@
+#include "drawing/drawing.h"
+
 #include <Arduino.h>
 #include <TFT_eSPI.h>
 
@@ -12,8 +14,7 @@
 // w  = width (thickness) of arc in pixels
 // colour = 16 bit colour value
 // Note if rx and ry are the same then an arc of a circle is drawn
-void fillArc(TFT_eSPI &tft, int x, int y, int start_angle, int seg_count, int rx, int ry, int w, unsigned int colour) {
-  static uint8_t seg = 3; // Segments are 3 degrees wide = 120 segments for 360 degrees
+void fillArc(TFT_eSPI &tft, int x, int y, int start_angle, int seg_count, int rx, int ry, int w, uint32_t color) {
   static uint8_t inc = 3; // Draw segments every 3 degrees
 
   // Calculate first pair of coordinates for segment start
@@ -25,17 +26,17 @@ void fillArc(TFT_eSPI &tft, int x, int y, int start_angle, int seg_count, int rx
   uint16_t y1 = sy * ry + y;
 
   // Draw colour blocks every inc degrees
-  for (int i = start_angle; i < start_angle + seg * seg_count; i += inc) {
+  for (int i = start_angle; i < start_angle + FILL_ARC_SEG * seg_count; i += inc) {
     // Calculate pair of coordinates for segment end
-    float sx2 = cos((i + seg - 90) * DEG2RAD);
-    float sy2 = sin((i + seg - 90) * DEG2RAD);
+    float sx2 = cos((i + FILL_ARC_SEG - 90) * DEG2RAD);
+    float sy2 = sin((i + FILL_ARC_SEG - 90) * DEG2RAD);
     int x2 = sx2 * (rx - w) + x;
     int y2 = sy2 * (ry - w) + y;
     int x3 = sx2 * rx + x;
     int y3 = sy2 * ry + y;
 
-    tft.fillTriangle(x0, y0, x1, y1, x2, y2, colour);
-    tft.fillTriangle(x1, y1, x2, y2, x3, y3, colour);
+    tft.fillTriangle(x0, y0, x1, y1, x2, y2, color);
+    tft.fillTriangle(x1, y1, x2, y2, x3, y3, color);
 
     // Copy segment end to segment start for next segment
     x0 = x2;
