@@ -49,7 +49,6 @@ void loop() {
     if (error) {
       Serial.println(error.c_str());
     } else {
-      Serial.println(doc.memoryUsage());
       displayStats(doc, tft);
     }
   }
